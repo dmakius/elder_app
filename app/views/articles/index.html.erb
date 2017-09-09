@@ -1,0 +1,32 @@
+<div class="container">
+<div style="padding:10px;">
+	<img src="/eoz_logo.png" style="width:100%;height:auto;">
+</div>
+<%= render "header" %>
+
+
+<% if @article.length >= 1 %>
+	<table class="table table-striped table-bordered table-condensed classy-table" style="opacity:0.9;">
+		<tr style="background:url('http://themepix.com/demo3/wp-content/themes/OrangeCounty/images/nav-bg.png') repeat-x scroll 0 0 #cb520b">
+		<th>DATE</th>
+		<th>PUBLICATION</th>
+		<th>ARTICLE</th>
+		
+		</tr>
+	<% @article.each do |article| %>
+		<tr>
+			<td><%= article.date %></td>
+			<td><%= article.publication %></td>
+			<td><%= link_to(article.title, article.url, target: "_blank") %></td>
+		</tr>
+	<% end %>
+	</table>
+
+	<%= will_paginate @article, renderer: BootstrapPagination::Rails %>
+
+<% else %>
+	<div class= "well" style="opacity:0.9">
+	<h2 style= "color:white;">There are no articles present</h2>
+	</div>
+<% end %>
+</div>
