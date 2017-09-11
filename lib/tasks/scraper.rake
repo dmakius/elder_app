@@ -17,7 +17,7 @@ require 'open-uri'
 	year2 = startTime.year
 
 	t = 0
-	until t > 2
+	until t > 20
 		if day === 0
 		day = 30
 		month -= 1
@@ -85,14 +85,14 @@ require 'open-uri'
 		article_date = page.split(".com/")[1].split("-")[0]
 		date = DateTime.new(article_date[0...4].to_i,article_date[5...7].to_i, article_date[10...12].to_i)
 		if aTag["href"] && aTag.text != "Share to Twitter" && aTag.text != "donate today" && aTag.text != "BlogThis!" && aTag.text != "Share to Facebook" && aTag.text != "Email This"
-    		 # TODO: check if article is in db already
-
-    		 @article = Article.new
-    		 @article.title = aTag.text
-    		 @article.url = aTag["href"]
-    		 @article.publication = publication
-    		 @article.date = date
-    		 @article.save
+    		 if !Article.exists?(title: aTag.text)
+				@article = Article.new
+    		 	@article.title = aTag.text
+    		 	@article.url = aTag["href"]
+    		 	@article.publication = publication
+    		 	@article.date = date
+    		 	@article.save    		 
+    		 end
 		end
 	end
 end	
