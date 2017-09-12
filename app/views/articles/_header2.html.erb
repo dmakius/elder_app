@@ -1,0 +1,26 @@
+<style>
+ .well{
+  background:url('http://themepix.com/demo3/wp-content/themes/OrangeCounty/images/nav-bg.png') repeat-x scroll 0 0 #cb520b
+ }
+ </style>
+
+ <div class="filter well" style="opacity:0.9; margin-top:15px;">
+
+      <%= form_tag articles_path, method: :get do %>
+      <div class = "row">
+        <div class = "col-md-4">
+          <%= label_tag :publication %><br>
+          <%= collection_select(:publication, "", Publisher.all.order("name ASC"), :name, :name, {:include_blank => true , :selected => "" })%>
+        </div>
+        <div class = "col-md-4">
+          <%= label_tag "published" %> <br>  
+          <%= date_select :date, :date,{:include_blank => true, :default => nil},{}%>
+        </div>
+        <div class = "col-md-4">
+          <%= submit_tag "Search" , :class => "btn btn-primary", :style => "margin-top:15px;"%>
+        </div>
+      </div> 
+      <% end %> 
+</div>
+ 
+ 

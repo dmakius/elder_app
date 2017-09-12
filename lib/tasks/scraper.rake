@@ -85,6 +85,7 @@ require 'open-uri'
 		article_date = page.split(".com/")[1].split("-")[0]
 		date = DateTime.new(article_date[0...4].to_i,article_date[5...7].to_i, article_date[10...12].to_i)
 		if aTag["href"] && aTag.text != "Share to Twitter" && aTag.text != "donate today" && aTag.text != "BlogThis!" && aTag.text != "Share to Facebook" && aTag.text != "Email This"
+    		# If article not in data base then save
     		 if !Article.exists?(title: aTag.text)
 				@article = Article.new
     		 	@article.title = aTag.text
@@ -92,6 +93,12 @@ require 'open-uri'
     		 	@article.publication = publication
     		 	@article.date = date
     		 	@article.save    		 
+    		 end
+    		 # If publication not in data base then save
+    		 if !Publisher.exists?(name: publication)
+    		 	@publisher = Publisher.new
+    		 	@publisher.name = publication
+    		 	@publisher.save
     		 end
 		end
 	end

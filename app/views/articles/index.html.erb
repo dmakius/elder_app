@@ -11,20 +11,17 @@
 		</div>
 	</div>
 </div>
-<%= render "header" %>
-
+<%= render "header2" %>
 
 <% if @article.length >= 1 %>
 	<table class="table table-striped table-bordered table-condensed classy-table" style="opacity:0.9;">
 		<tr style="background:url('http://themepix.com/demo3/wp-content/themes/OrangeCounty/images/nav-bg.png') repeat-x scroll 0 0 #cb520b">
-		<th>DATE</th>
 		<th>PUBLICATION</th>
 		<th>ARTICLE</th>
 		
 		</tr>
 	<% @article.each do |article| %>
 		<tr>
-			<td><%= article.date %></td>
 			<td><%= article.publication %></td>
 			<td><%= link_to(article.title, article.url, target: "_blank") %></td>
 		</tr>

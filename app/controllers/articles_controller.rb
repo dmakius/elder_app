@@ -16,13 +16,11 @@ class ArticlesController < ApplicationController
 			end
 			newDate = date.to_s.first(-1)
 		end
-		
-		puts newDate
-
-		puts 
 		@article = Article.paginate(:page => params[:page], :per_page => 30)
-		@article = @article.where(publication: params["publication"]) if params["publication"].present?
-		@article = @article.where("date = ?", newDate) if params[:date].present?
+		@article = @article.where(publication: params["publication"]) if params["publication"][0] != ""
+		@article = @article.where("date = ?", newDate) if params[:date].present? && newDate != "0-0-0"
+		
+		@publishers = Publisher.all
 	end
 
 	def new
