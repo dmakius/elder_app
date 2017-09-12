@@ -43,8 +43,8 @@ require 'open-uri'
 	end
 	dayOne = DateTime.new(year,month, day).strftime("%Y-%m-%dT%H:%M:%S")
  	dayTwo = DateTime.new(year2,month2, day2).strftime("%Y-%m-%dT%H:%M:%S")
- 	puts "Day ONE: " + dayOne.to_s
- 	puts "Day TWO: " + dayTwo.to_s
+ 	puts "STARTING POINT: " + dayOne.to_s
+ 	puts "ENDING POINT: " + dayTwo.to_s
   	day -= 1
 	day2 -= 1
 
@@ -55,11 +55,12 @@ require 'open-uri'
     	# puts link["href"]
     	if !links.include?(link["href"]) 
     		links.push(link["href"])
+    		puts "LINK ADDED"
     	else
-    		puts "DUPLICATE NOT ADDED"
+    		puts "DUPLICATE LINK FOUND: NOT ADDED"
     	end
 	end 
-
+	sleep 1.0 + rand
 	t += 1
 	end
 	
@@ -71,7 +72,7 @@ require 'open-uri'
 	end 
 
 	article_links.each do |page|
-	puts page
+	puts "getting data from page #{page}"
 	articlePage = Nokogiri::HTML(open(page))
 	aTags = articlePage.css("div.post-body.entry-content > a")	
 	aTags.each do |aTag|
@@ -102,6 +103,7 @@ require 'open-uri'
     		 end
 		end
 	end
+	sleep 1.0 + rand
 end	
 
 end
