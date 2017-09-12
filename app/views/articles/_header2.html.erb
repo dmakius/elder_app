@@ -10,11 +10,11 @@
       <div class = "row">
         <div class = "col-md-4">
           <%= label_tag :publication %><br>
-          <%= collection_select(:publication, "", Publisher.all.order("name ASC"), :name, :name, {:include_blank => true , :selected => "" })%>
+          <%= collection_select(:publication, "", Publisher.all.order("name ASC"), :name, :name, {:include_blank => true , :selected => "" }, {:class => "selectpicker"})%>
         </div>
         <div class = "col-md-4">
           <%= label_tag "published" %> <br>  
-          <%= date_select :date, :date,{:include_blank => true, :default => nil, :start_year => 2007, end_year: Date.today.year, :order => [:month, :day, :year]},{}%>
+          <%= date_select :date, :date,{:include_blank => true, :default => nil, :start_year => 2007, end_year: Date.today.year, :order => [:month, :day, :year]}, {:class => "selectpicker"}%>
         </div>
         <div class = "col-md-4">
           <%= submit_tag "Search" , :class => "btn btn-primary", :style => "margin-top:15px;"%>
