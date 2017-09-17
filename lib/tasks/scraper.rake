@@ -17,7 +17,7 @@ require 'open-uri'
 	year2 = startTime.year
 
 	t = 0
-	until t > 3
+	until t > 2
 		if day === 0
 		day = 30
 		month -= 1
